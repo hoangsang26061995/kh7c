@@ -115,34 +115,39 @@
     updateDateTime();
     setInterval(updateDateTime, 1000);
 
-    fetch('https://script.google.com/macros/s/AKfycbz7lGg7DEm6-H7MzV4enR0DIbOrmXmFNmT-HlUXsf349221-zHorwxFmN7PjylVSXgNXg/exec')
-      .then(response => response.json())
-      .then(data => {
-        const priceTable = document.querySelector('.price-table');
-        while (priceTable.children.length > 3) {
-          priceTable.removeChild(priceTable.lastChild);
-        }
-        data.forEach(item => {
-          const loaiCell = document.createElement('div');
-          loaiCell.className = 'cell';
-          loaiCell.innerHTML = `<span class="gold-type">${item.loai}</span>`;
+    function updateData() {
+      fetch('https://script.google.com/macros/s/AKfycbz7lGg7DEm6-H7MzV4enR0DIbOrmXmFNmT-HlUXsf349221-zHorwxFmN7PjylVSXgNXg/exec')
+        .then(response => response.json())
+        .then(data => {
+          const priceTable = document.querySelector('.price-table');
+          while (priceTable.children.length > 3) {
+            priceTable.removeChild(priceTable.lastChild);
+          }
+          data.forEach(item => {
+            const loaiCell = document.createElement('div');
+            loaiCell.className = 'cell';
+            loaiCell.innerHTML = `<span class="gold-type">${item.loai}</span>`;
 
-          const muaCell = document.createElement('div');
-          muaCell.className = 'cell price-cell buy';
-          muaCell.textContent = item.mua;
+            const muaCell = document.createElement('div');
+            muaCell.className = 'cell price-cell buy';
+            muaCell.textContent = item.mua;
 
-          const banCell = document.createElement('div');
-          banCell.className = 'cell price-cell sold';
-          banCell.textContent = item.ban;
+            const banCell = document.createElement('div');
+            banCell.className = 'cell price-cell sold';
+            banCell.textContent = item.ban;
 
-          priceTable.appendChild(loaiCell);
-          priceTable.appendChild(muaCell);
-          priceTable.appendChild(banCell);
+            priceTable.appendChild(loaiCell);
+            priceTable.appendChild(muaCell);
+            priceTable.appendChild(banCell);
+          });
+        })
+        .catch(error => {
+          console.error("Lỗi khi lấy dữ liệu từ Google Sheets:", error);
         });
-      })
-      .catch(error => {
-        console.error("Lỗi khi lấy dữ liệu từ Google Sheets:", error);
-      });
+    }
+
+    updateData();
+    setInterval(updateData, 10000); // Reload sau mỗi 10 giây
   </script>
 </body>
 </html>
