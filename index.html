@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Bảng Giá Vàng - Kim Hoàng Bảy Chanh</title>
   <style>
     body {
@@ -12,41 +12,36 @@
       background-size: cover;
       color: #000;
     }
-
     .container {
       max-width: 1200px;
       margin: auto;
       padding: 0 20px;
     }
-
-    .header, .sub-header {
-      text-align: center;
-      user-select: none;
-      margin: 0;
-      padding: 5px 0;
-    }
-
     .highlight-header {
       background-color: red;
       color: yellow;
       font-weight: bold;
       text-shadow: 1px 1px 2px black;
       border-radius: 10px;
-      margin: 5px auto;
-      max-width: fit-content;
+      text-align: center;
+      margin: 10px auto;
       padding: 8px 20px;
+      user-select: none;
     }
-
-    .highlight-header.dntn { font-size: 1.25rem; }
-    .highlight-header.kimhoang { font-size: 2.5rem; }
-
+    .highlight-header.dntn {
+      font-size: 1.25rem;
+    }
+    .highlight-header.kimhoang {
+      font-size: 2.5rem;
+    }
     .sub-header {
       font-weight: bold;
       font-size: 1.2rem;
       color: darkblue;
+      text-align: center;
       margin-bottom: 10px;
+      user-select: none;
     }
-
     .price-table {
       display: grid;
       grid-template-columns: 2fr 4fr 4fr;
@@ -54,9 +49,9 @@
       border: 2px solid red;
       border-radius: 15px;
       padding: 10px;
+      user-select: none;
       background-color: transparent;
     }
-
     .price-table .header-cell {
       background-color: red;
       color: yellow;
@@ -66,7 +61,6 @@
       border-radius: 10px;
       text-align: center;
     }
-
     .price-table .cell {
       font-weight: bold;
       text-align: center;
@@ -75,21 +69,20 @@
       justify-content: center;
       align-items: center;
     }
-
-    .gold-type {
+    .price-table .gold-type {
       background-color: red;
       color: yellow;
+      font-weight: bold;
       border-radius: 10px;
       padding: 5px 10px;
       font-size: 1.5rem;
     }
-
-    .price-cell {
+    .price-table .price-cell {
       font-size: 4rem;
       color: blue;
+      margin: 0 10px;
       border-bottom: 2px solid blue;
     }
-
     .price-table > div {
       border-bottom: 1px solid red;
       padding-bottom: 5px;
@@ -103,28 +96,14 @@
   <div class="container">
     <div class="highlight-header dntn">DNTN</div>
     <div class="highlight-header kimhoang">KIM HOÀNG BẢY CHANH</div>
-    <div class="sub-header">NGÀY GIỜ: <span id="datetime"></span> | ĐVT: VND/CHỈ | BẢNG GIÁ VÀNG</div>
+    <div class="sub-header">
+      NGÀY GIỜ: <span id="datetime"></span> | ĐVT: VND/CHỈ | BẢNG GIÁ VÀNG
+    </div>
 
     <div class="price-table">
       <div class="header-cell">LOẠI VÀNG</div>
       <div class="header-cell">MUA VÀO</div>
       <div class="header-cell">BÁN RA</div>
-
-      <div class="cell"><span class="gold-type">9999/9949</span></div>
-      <div class="cell price-cell" id="buy1">--</div>
-      <div class="cell price-cell" id="sell1">--</div>
-
-      <div class="cell"><span class="gold-type">97/23K</span></div>
-      <div class="cell price-cell" id="buy2">--</div>
-      <div class="cell price-cell" id="sell2">--</div>
-
-      <div class="cell"><span class="gold-type">17K</span></div>
-      <div class="cell price-cell" id="buy3">--</div>
-      <div class="cell price-cell" id="sell3">--</div>
-
-      <div class="cell"><span class="gold-type">15K</span></div>
-      <div class="cell price-cell" id="buy4">--</div>
-      <div class="cell price-cell" id="sell4">--</div>
     </div>
   </div>
 
@@ -135,23 +114,38 @@
       document.getElementById('datetime').textContent = formatted;
     }
 
-    async function fetchGoldPrices() {
-      try {
-        const response = await fetch("https://script.google.com/macros/s/AKfycbz7lGg7DEm6-H7MzV4enR0DIbOrmXmFNmT-HlUXsf349221-zHorwxFmN7PjylVSXgNXg/exec");
-        const data = await response.json();
-        for (let i = 0; i < data.length; i++) {
-          document.getElementById(`buy${i+1}`).textContent = data[i][0];
-          document.getElementById(`sell${i+1}`).textContent = data[i][1];
-        }
-      } catch (error) {
-        console.error("Lỗi khi tải dữ liệu:", error);
-      }
-    }
-
     updateDateTime();
     setInterval(updateDateTime, 1000);
-    fetchGoldPrices();
-    setInterval(fetchGoldPrices, 60000); // cập nhật mỗi phút
+
+    // Thay URL dưới bằng URL web app bạn đã deploy Google Apps Script
+    fetch('https://script.google.com/macros/s/AKfycbz7lGg7DEm6-H7MzV4enR0DIbOrmXmFNmT-HlUXsf349221-zHorwxFmN7PjylVSXgNXg/exec')
+      .then(response => response.json())
+      .then(data => {
+        const priceTable = document.querySelector('.price-table');
+        while (priceTable.children.length > 3) {
+          priceTable.removeChild(priceTable.lastChild);
+        }
+        data.forEach(item => {
+          const loaiCell = document.createElement('div');
+          loaiCell.className = 'cell';
+          loaiCell.innerHTML = `<span class="gold-type">${item.loai}</span>`;
+
+          const muaCell = document.createElement('div');
+          muaCell.className = 'cell price-cell buy';
+          muaCell.textContent = item.mua;
+
+          const banCell = document.createElement('div');
+          banCell.className = 'cell price-cell sold';
+          banCell.textContent = item.ban;
+
+          priceTable.appendChild(loaiCell);
+          priceTable.appendChild(muaCell);
+          priceTable.appendChild(banCell);
+        });
+      })
+      .catch(error => {
+        console.error("Lỗi khi lấy dữ liệu từ Google Sheets:", error);
+      });
   </script>
 </body>
 </html>
