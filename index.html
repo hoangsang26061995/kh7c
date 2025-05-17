@@ -8,61 +8,34 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: linear-gradient(to right, #f5e6b3, #fdf1d6);
+      background-image: url('NEN.PNG');  /* Ảnh nền bạn vừa upload */
+      background-size: cover;            /* Ảnh sẽ trải đầy toàn bộ nền */
+      background-position: center;       /* Căn giữa ảnh nền */
+      background-repeat: no-repeat;      /* Không lặp lại ảnh nền */
       color: #000;
     }
-    .thongtin {
-      text-align: center;
-      background-color: #fff8dc;
-      padding: 10px 0;
-      border-bottom: 2px solid gold;
-      font-family: 'Arial', sans-serif;
-    }
-    .doanhnghiep {
-      font-weight: bold;
-      font-size: 3.75rem; /* 2.5 lần 1.5rem = 3.75rem */
-      color: red;
-    }
-    .tieude {
-      font-size: 2rem;
-      font-weight: bold;
-      color: blue;
-      margin: 5px 0;
-    }
-    .ngaygio {
-      color: #333;
-      font-size: 1rem;
-    }
-    .donvi {
-      color: #555;
-      font-size: 1rem;
-    }
-
     .container {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
       gap: 10px;
-      width: 100%;
-      padding: 20px 10px;
+      max-width: 1200px;
+      margin: auto;
+      padding: 20px;
       text-align: center;
-      box-sizing: border-box;
-    }
-    /* Bỏ class header để không hiện chữ "KIM HOÀNG BẢY CHANH" dưới */
-    /*
-    .header, .item {
-      padding: 10px;
-      border-radius: 10px;
-      box-shadow: 2px 2px 10px #ccc;
+      background-color: rgba(255, 255, 255, 0.8); /* Nền trắng mờ để chữ dễ nhìn */
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
     }
     .header {
       grid-column: span 3;
       background-color: gold;
       color: red;
-      font-size: 2rem;
+      font-size: 2.5rem; /* tăng kích thước chữ lên 2.5 lần */
       font-weight: bold;
       text-shadow: 2px 2px white;
+      padding: 15px 0;
+      border-radius: 15px;
     }
-    */
     .column {
       background-color: yellow;
       padding: 10px;
@@ -70,13 +43,13 @@
       border: 2px solid red;
       border-radius: 15px;
     }
-    .loai, .mua, .ban {
+    .loai, .banggia {
       background-color: white;
       font-size: 1.5rem;
       font-weight: bold;
-      margin: 6px 0;
-      padding: 6px 0;
+      margin: 5px 0;
       border-radius: 8px;
+      padding: 5px 0;
     }
     .highlight {
       background-color: red;
@@ -84,36 +57,37 @@
       padding: 5px 10px;
       font-weight: bold;
       border-radius: 10px;
-      margin: 5px 0 12px 0;
+      margin: 5px 0 15px;
       display: inline-block;
     }
-    .banggia {
-      font-size: 2rem;
-      color: blue;
-      margin: 6px 0;
-      padding: 6px 0;
-      border-radius: 8px;
-      background-color: white;
+    /* Các phần thêm như DNTN, Ngày giờ, ĐVT, bảng giá vàng */
+    .info {
+      max-width: 1200px;
+      margin: 20px auto 10px auto;
+      padding: 10px 20px;
+      background-color: rgba(255, 255, 255, 0.85);
+      border-radius: 12px;
       font-weight: bold;
+      font-size: 1.2rem;
+      color: #333;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
     }
   </style>
 </head>
 <body>
-
-  <div class="thongtin">
-    <div class="doanhnghiep">DNTN KIM HOÀNG BẢY CHANH</div>
-    <div class="tieude">BẢNG GIÁ VÀNG</div>
-    <div class="ngaygio" id="ngaygio">Ngày cập nhật: ...</div>
-    <div class="donvi">ĐVT: VND/CHỈ</div>
+  <div class="info">
+    <div>DNTN: Kim Hoàng Bảy Chanh</div>
+    <div>Ngày giờ hiện tại: <span id="datetime"></span></div>
+    <div>ĐVT: VND/Chỉ</div>
+    <div>Bảng giá vàng</div>
   </div>
 
   <div class="container">
-    <!-- Bỏ phần header dưới -->
-    <!-- 
-    <div class="header">KIM HOÀNG BẢY CHANH</div> 
-    -->
+    <div class="header">KIM HOÀNG BẢY CHANH</div>
 
-    <!-- Cột Loại Vàng -->
     <div class="column">
       <div class="highlight">LOẠI VÀNG</div>
       <div class="loai">9999/99.99</div>
@@ -122,7 +96,6 @@
       <div class="loai">15K</div>
     </div>
 
-    <!-- Cột Mua vào -->
     <div class="column">
       <div class="highlight">MUA VÀO</div>
       <div class="banggia">10.240.000</div>
@@ -131,7 +104,6 @@
       <div class="banggia">6.120.000</div>
     </div>
 
-    <!-- Cột Bán ra -->
     <div class="column">
       <div class="highlight">BÁN RA</div>
       <div class="banggia">10.690.000</div>
@@ -142,13 +114,22 @@
   </div>
 
   <script>
-    const now = new Date();
-    const formatted = now.toLocaleString('vi-VN', {
-      day: '2-digit', month: '2-digit', year: 'numeric',
-      hour: '2-digit', minute: '2-digit', second: '2-digit'
-    });
-    document.getElementById('ngaygio').textContent = "Ngày cập nhật: " + formatted;
+    // Script để hiển thị ngày giờ hiện tại
+    function updateDateTime() {
+      const dtElement = document.getElementById('datetime');
+      const now = new Date();
+      dtElement.textContent = now.toLocaleString('vi-VN', {
+        hour12: false,
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      });
+    }
+    updateDateTime();
+    setInterval(updateDateTime, 1000); // cập nhật mỗi giây
   </script>
-
 </body>
 </html>
