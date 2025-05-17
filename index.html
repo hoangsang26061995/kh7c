@@ -8,64 +8,94 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      /* Thêm ảnh nền */
-      background-image: url('NEN.PNG');
-      background-size: cover;         /* trải đầy */
-      background-position: center;    /* căn giữa */
-      background-repeat: no-repeat;   /* không lặp lại */
+      background-image: url("images/NEN.PNG");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
       color: #000;
     }
+
     .container {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: repeat(3, 1fr);
       gap: 10px;
-      max-width: 1200px;
+      max-width: 100%;
       margin: auto;
       padding: 20px;
       text-align: center;
-      /* Thêm nền trắng mờ để chữ dễ đọc trên nền ảnh */
-      background-color: rgba(255, 255, 255, 0.8);
-      border-radius: 15px;
     }
+
     .header {
       grid-column: span 3;
       background-color: gold;
       color: red;
-      font-size: 2rem;
+      font-size: 5rem;
       font-weight: bold;
       text-shadow: 2px 2px white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 2px 2px 10px #ccc;
+    }
+
+    .info-bar {
+      grid-column: span 3;
+      background-color: rgba(255,255,255,0.9);
       padding: 10px;
       border-radius: 10px;
+      font-weight: bold;
+      font-size: 1.2rem;
+      margin-bottom: 10px;
     }
+
     .column {
-      background-color: yellow;
+      background-color: rgba(255,255,255,0.8);
       padding: 10px;
       font-weight: bold;
       border: 2px solid red;
       border-radius: 15px;
     }
-    .loai, .mua, .ban {
-      background-color: white;
-      font-size: 1.5rem;
-      font-weight: bold;
-      margin: 5px 0;
-      padding: 5px 0;
-      border-radius: 8px;
-    }
+
     .highlight {
       background-color: red;
       color: yellow;
       padding: 5px 10px;
       font-weight: bold;
       border-radius: 10px;
-      margin: 5px 0 15px;
+      margin: 5px 0;
       display: inline-block;
     }
+
+    .loai, .banggia {
+      background-color: white;
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin: 5px 0;
+      padding: 8px;
+      border-radius: 8px;
+    }
+
+    .banggia {
+      color: blue;
+    }
   </style>
+  <script>
+    // Tự động cập nhật ngày giờ
+    function updateDateTime() {
+      const now = new Date();
+      const formatted = now.toLocaleString('vi-VN');
+      document.getElementById('datetime').textContent = formatted;
+    }
+    setInterval(updateDateTime, 1000);
+    window.onload = updateDateTime;
+  </script>
 </head>
 <body>
   <div class="container">
     <div class="header">KIM HOÀNG BẢY CHANH</div>
+
+    <div class="info-bar">
+      DNTN - ĐVT: VND/CHỈ - NGÀY GIỜ: <span id="datetime"></span>
+    </div>
 
     <!-- Cột Loại Vàng -->
     <div class="column">
@@ -79,19 +109,19 @@
     <!-- Cột Mua vào -->
     <div class="column">
       <div class="highlight">MUA VÀO</div>
-      <div class="mua">10.240.000</div>
-      <div class="mua">9.990.000</div>
-      <div class="mua">7.130.000</div>
-      <div class="mua">6.120.000</div>
+      <div class="banggia">10.240.000</div>
+      <div class="banggia">9.990.000</div>
+      <div class="banggia">7.130.000</div>
+      <div class="banggia">6.120.000</div>
     </div>
 
     <!-- Cột Bán ra -->
     <div class="column">
       <div class="highlight">BÁN RA</div>
-      <div class="ban">10.690.000</div>
-      <div class="ban">10.350.000</div>
-      <div class="ban">7.930.000</div>
-      <div class="ban">6.990.000</div>
+      <div class="banggia">10.690.000</div>
+      <div class="banggia">10.350.000</div>
+      <div class="banggia">7.930.000</div>
+      <div class="banggia">6.990.000</div>
     </div>
   </div>
 </body>
