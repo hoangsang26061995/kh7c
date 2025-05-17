@@ -89,7 +89,6 @@
       text-align: center;
       padding: 10px 5px;
       user-select: text;
-      /* Riêng cột loại vàng font size nhỏ hơn */
       display: flex;
       justify-content: center;
       align-items: center;
@@ -100,9 +99,8 @@
       color: yellow;
       font-weight: bold;
       border-radius: 10px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      display: inline-block;
+      padding: 5px 10px;
       font-size: 1.5rem;
     }
 
@@ -141,22 +139,22 @@
       <div class="header-cell">BÁN RA</div>
 
       <!-- Dòng 1 -->
-      <div class="cell gold-type">9999/99.99</div>
+      <div class="cell"><span class="gold-type">9999/99.99</span></div>
       <div class="cell price-cell buy">10.240.000</div>
       <div class="cell price-cell sold">10.690.000</div>
 
       <!-- Dòng 2 -->
-      <div class="cell gold-type">97/23K</div>
+      <div class="cell"><span class="gold-type">97/23K</span></div>
       <div class="cell price-cell buy">9.990.000</div>
       <div class="cell price-cell sold">10.350.000</div>
 
       <!-- Dòng 3 -->
-      <div class="cell gold-type">17K</div>
+      <div class="cell"><span class="gold-type">17K</span></div>
       <div class="cell price-cell buy">7.130.000</div>
       <div class="cell price-cell sold">7.930.000</div>
 
       <!-- Dòng 4 -->
-      <div class="cell gold-type">15K</div>
+      <div class="cell"><span class="gold-type">15K</span></div>
       <div class="cell price-cell buy">6.120.000</div>
       <div class="cell price-cell sold">6.990.000</div>
     </div>
