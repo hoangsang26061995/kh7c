@@ -8,62 +8,48 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background-image: url("images/NEN.PNG");
+      background: url('./images/NEN.PNG') no-repeat center center fixed;
       background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
       color: #000;
     }
-
     .container {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: 1fr 1fr 1fr;
       gap: 10px;
-      max-width: 100%;
+      max-width: 1200px;
       margin: auto;
       padding: 20px;
       text-align: center;
     }
-
-    .dntn {
-      grid-column: span 3;
-      font-size: 2rem;
-      font-weight: bold;
-      color: darkblue;
-      margin-bottom: -10px;
-      text-shadow: 1px 1px white;
-    }
-
     .header {
       grid-column: span 3;
-      background-color: gold;
       color: red;
-      font-size: 5rem;
+      font-size: 2.5rem;
       font-weight: bold;
       text-shadow: 2px 2px white;
-      padding: 20px;
-      border-radius: 15px;
-      box-shadow: 2px 2px 10px #ccc;
+      margin-top: 0;
     }
-
-    .info-bar {
+    .sub-header {
       grid-column: span 3;
-      background-color: rgba(255,255,255,0.9);
-      padding: 10px;
-      border-radius: 10px;
       font-weight: bold;
       font-size: 1.2rem;
-      margin-bottom: 10px;
+      color: darkblue;
     }
-
     .column {
-      background-color: rgba(255,255,255,0.8);
+      background-color: rgba(255, 255, 255, 0.5); /* Trong suốt */
       padding: 10px;
       font-weight: bold;
       border: 2px solid red;
       border-radius: 15px;
     }
-
+    .loai, .mua, .ban {
+      background-color: white;
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin: 5px 0;
+      border-radius: 10px;
+      padding: 5px;
+    }
     .highlight {
       background-color: red;
       color: yellow;
@@ -73,39 +59,18 @@
       margin: 5px 0;
       display: inline-block;
     }
-
-    .loai, .banggia {
-      background-color: white;
-      font-size: 1.5rem;
-      font-weight: bold;
-      margin: 5px 0;
-      padding: 8px;
-      border-radius: 8px;
-    }
-
     .banggia {
+      font-size: 2rem;
       color: blue;
     }
   </style>
-  <script>
-    // Tự động cập nhật ngày giờ
-    function updateDateTime() {
-      const now = new Date();
-      const formatted = now.toLocaleString('vi-VN');
-      document.getElementById('datetime').textContent = formatted;
-    }
-    setInterval(updateDateTime, 1000);
-    window.onload = updateDateTime;
-  </script>
 </head>
 <body>
   <div class="container">
-    <div class="dntn">DNTN</div>
+    <!-- Sub Header -->
+    <div class="sub-header">DNTN</div>
     <div class="header">KIM HOÀNG BẢY CHANH</div>
-
-    <div class="info-bar">
-      ĐVT: VND/CHỈ - NGÀY GIỜ: <span id="datetime"></span>
-    </div>
+    <div class="sub-header">NGÀY GIỜ: <span id="datetime"></span> | ĐVT: VND/CHỈ | BẢNG GIÁ VÀNG</div>
 
     <!-- Cột Loại Vàng -->
     <div class="column">
@@ -134,5 +99,16 @@
       <div class="banggia">6.990.000</div>
     </div>
   </div>
+
+  <script>
+    // Hiện thời gian thực tế
+    function updateDateTime() {
+      const now = new Date();
+      const formatted = now.toLocaleString('vi-VN');
+      document.getElementById('datetime').textContent = formatted;
+    }
+    updateDateTime();
+    setInterval(updateDateTime, 60000); // Cập nhật mỗi phút
+  </script>
 </body>
 </html>
