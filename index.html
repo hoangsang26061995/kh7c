@@ -94,27 +94,18 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      border-bottom: 1px solid red; /* Đảm bảo chiều cao dòng đều nhau */
     }
 
-    /* Cột mua vào, bán ra font lớn */
+    /* Cột mua vào, bán ra font lớn và có gạch dưới màu xanh */
     .price-table .price-cell {
       font-size: 4rem;
       color: blue;
       margin: 0 10px;
-      /* Bỏ gạch dưới mặc định */
-      border-bottom: none;
+      border-bottom: 2px solid blue; /* Gạch dưới màu xanh cho tất cả */
     }
 
-    /* Chỉ riêng ô bán ra dòng 4 (6.990.000) có gạch dưới màu xanh */
-    .price-table .price-cell.sold-last {
-      border-bottom: 2px solid blue;
-    }
-
-    /* Giữ chiều cao dòng đều nhau */
-    .price-table > div {
-      border-bottom: 1px solid red;
-      padding-bottom: 5px;
-    }
+    /* Bỏ gạch dưới cho dòng cuối cùng (header-row đã có border) */
     .price-table > div:last-child {
       border-bottom: none;
     }
@@ -150,7 +141,7 @@
       <!-- Dòng 4 -->
       <div class="cell">15K</div>
       <div class="cell price-cell">6.120.000</div>
-      <div class="cell price-cell sold-last">6.990.000</div>
+      <div class="cell price-cell">6.990.000</div>
     </div>
   </div>
 
