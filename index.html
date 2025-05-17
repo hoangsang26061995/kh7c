@@ -16,6 +16,7 @@
       max-width: 1200px;
       margin: auto;
       padding: 0 20px;
+      text-align: center;
     }
     .highlight-header {
       background-color: red;
@@ -23,16 +24,18 @@
       font-weight: bold;
       text-shadow: 1px 1px 2px black;
       border-radius: 10px;
-      text-align: center;
       margin: 10px auto;
-      padding: 8px 20px;
+      padding: 5px 10px;
       user-select: none;
+      display: inline-block;
     }
     .highlight-header.dntn {
       font-size: 1.25rem;
     }
     .highlight-header.kimhoang {
       font-size: 2.5rem;
+      display: block; /* Để tiêu đề chính hiển thị trên một dòng riêng */
+      width: fit-content;
     }
     .sub-header {
       font-weight: bold;
@@ -81,10 +84,6 @@
       font-size: 4rem;
       color: blue;
       margin: 0 10px;
-      border-bottom: 2px solid blue;
-    }
-    /* Thêm style cho price-cell.sold để đảm bảo */
-    .price-table .price-cell.sold {
       border-bottom: 2px solid blue;
     }
     .price-table > div {
