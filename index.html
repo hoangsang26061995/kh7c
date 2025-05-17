@@ -5,57 +5,62 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Bảng Giá Vàng - Kim Hoàng Bảy Chanh</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+    
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(to right, #f5e6b3, #fdf1d6);
+      font-family: 'Anton', sans-serif;
+      background: linear-gradient(to right, #f5e6b3, #fffbe6);
       color: #000;
     }
+
     .container {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
-      gap: 10px;
-      max-width: 1200px;
+      gap: 20px;
+      max-width: 1000px;
       margin: auto;
-      padding: 20px;
+      padding: 40px 20px;
       text-align: center;
     }
-    .header, .item {
-      padding: 10px;
-      border-radius: 10px;
-      box-shadow: 2px 2px 10px #ccc;
-    }
+
     .header {
       grid-column: span 3;
-      background-color: gold;
-      color: red;
-      font-size: 2rem;
+      background: linear-gradient(45deg, gold, orange, red);
+      color: white;
+      font-size: 3rem;
       font-weight: bold;
-      text-shadow: 2px 2px white;
-    }
-    .column {
-      background-color: yellow;
-      padding: 10px;
-      font-weight: bold;
-      border: 2px solid red;
+      text-shadow: 2px 2px 4px #000;
       border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 0 20px gold;
     }
-    .loai, .mua, .ban {
+
+    .column {
       background-color: white;
-      font-size: 1.5rem;
-      font-weight: bold;
+      border: 3px solid red;
+      border-radius: 15px;
+      box-shadow: 2px 2px 8px #ccc;
+      padding: 20px 10px;
     }
+
     .highlight {
-      background-color: red;
+      background: red;
       color: yellow;
-      padding: 5px 10px;
-      font-weight: bold;
+      font-size: 1.5rem;
+      padding: 10px;
+      margin-bottom: 15px;
       border-radius: 10px;
-      margin: 5px 0;
-      display: inline-block;
+      box-shadow: 0 0 5px #000;
     }
+
+    .loai, .banggia {
+      font-size: 1.6rem;
+      margin: 10px 0;
+      font-weight: bold;
+    }
+
     .banggia {
-      font-size: 2rem;
       color: blue;
     }
   </style>
