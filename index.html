@@ -8,10 +8,11 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background-image: url('NEN.PNG');  /* Ảnh nền bạn vừa upload */
-      background-size: cover;            /* Ảnh sẽ trải đầy toàn bộ nền */
-      background-position: center;       /* Căn giữa ảnh nền */
-      background-repeat: no-repeat;      /* Không lặp lại ảnh nền */
+      /* Thêm ảnh nền */
+      background-image: url('NEN.PNG');
+      background-size: cover;         /* trải đầy */
+      background-position: center;    /* căn giữa */
+      background-repeat: no-repeat;   /* không lặp lại */
       color: #000;
     }
     .container {
@@ -22,19 +23,19 @@
       margin: auto;
       padding: 20px;
       text-align: center;
-      background-color: rgba(255, 255, 255, 0.8); /* Nền trắng mờ để chữ dễ nhìn */
+      /* Thêm nền trắng mờ để chữ dễ đọc trên nền ảnh */
+      background-color: rgba(255, 255, 255, 0.8);
       border-radius: 15px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.2);
     }
     .header {
       grid-column: span 3;
       background-color: gold;
       color: red;
-      font-size: 2.5rem; /* tăng kích thước chữ lên 2.5 lần */
+      font-size: 2rem;
       font-weight: bold;
       text-shadow: 2px 2px white;
-      padding: 15px 0;
-      border-radius: 15px;
+      padding: 10px;
+      border-radius: 10px;
     }
     .column {
       background-color: yellow;
@@ -43,13 +44,13 @@
       border: 2px solid red;
       border-radius: 15px;
     }
-    .loai, .banggia {
+    .loai, .mua, .ban {
       background-color: white;
       font-size: 1.5rem;
       font-weight: bold;
       margin: 5px 0;
-      border-radius: 8px;
       padding: 5px 0;
+      border-radius: 8px;
     }
     .highlight {
       background-color: red;
@@ -60,34 +61,13 @@
       margin: 5px 0 15px;
       display: inline-block;
     }
-    /* Các phần thêm như DNTN, Ngày giờ, ĐVT, bảng giá vàng */
-    .info {
-      max-width: 1200px;
-      margin: 20px auto 10px auto;
-      padding: 10px 20px;
-      background-color: rgba(255, 255, 255, 0.85);
-      border-radius: 12px;
-      font-weight: bold;
-      font-size: 1.2rem;
-      color: #333;
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
   </style>
 </head>
 <body>
-  <div class="info">
-    <div>DNTN: Kim Hoàng Bảy Chanh</div>
-    <div>Ngày giờ hiện tại: <span id="datetime"></span></div>
-    <div>ĐVT: VND/Chỉ</div>
-    <div>Bảng giá vàng</div>
-  </div>
-
   <div class="container">
     <div class="header">KIM HOÀNG BẢY CHANH</div>
 
+    <!-- Cột Loại Vàng -->
     <div class="column">
       <div class="highlight">LOẠI VÀNG</div>
       <div class="loai">9999/99.99</div>
@@ -96,40 +76,23 @@
       <div class="loai">15K</div>
     </div>
 
+    <!-- Cột Mua vào -->
     <div class="column">
       <div class="highlight">MUA VÀO</div>
-      <div class="banggia">10.240.000</div>
-      <div class="banggia">9.990.000</div>
-      <div class="banggia">7.130.000</div>
-      <div class="banggia">6.120.000</div>
+      <div class="mua">10.240.000</div>
+      <div class="mua">9.990.000</div>
+      <div class="mua">7.130.000</div>
+      <div class="mua">6.120.000</div>
     </div>
 
+    <!-- Cột Bán ra -->
     <div class="column">
       <div class="highlight">BÁN RA</div>
-      <div class="banggia">10.690.000</div>
-      <div class="banggia">10.350.000</div>
-      <div class="banggia">7.930.000</div>
-      <div class="banggia">6.990.000</div>
+      <div class="ban">10.690.000</div>
+      <div class="ban">10.350.000</div>
+      <div class="ban">7.930.000</div>
+      <div class="ban">6.990.000</div>
     </div>
   </div>
-
-  <script>
-    // Script để hiển thị ngày giờ hiện tại
-    function updateDateTime() {
-      const dtElement = document.getElementById('datetime');
-      const now = new Date();
-      dtElement.textContent = now.toLocaleString('vi-VN', {
-        hour12: false,
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit'
-      });
-    }
-    updateDateTime();
-    setInterval(updateDateTime, 1000); // cập nhật mỗi giây
-  </script>
 </body>
 </html>
