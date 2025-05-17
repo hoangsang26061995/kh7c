@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Bảng Giá Vàng - Kim Hoàng Bảy Chanh</title>
+  <title>Bảng Giá Vàng - Kim Hoàng Bảy" />
   <style>
     body {
       margin: 0;
@@ -39,6 +39,26 @@
       text-shadow: 2px 2px 5px black;
       color: yellow;
       background-color: red;
+      position: relative;
+    }
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background-color: white;
+      border-radius: 50%;
+      animation: twinkle 1s infinite;
+    }
+    @keyframes twinkle {
+      0% {
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
     }
     .sub-header {
       font-weight: bold;
@@ -122,6 +142,17 @@
 
     updateDateTime();
     setInterval(updateDateTime, 1000);
+
+    const kimHoangElement = document.querySelector('.highlight-header.kimhoang');
+
+    for (let i = 0; i < 50; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      star.style.top = `${Math.random() * 100}%`;
+      star.style.left = `${Math.random() * 100}%`;
+      star.style.animationDelay = `${Math.random() * 1}s`;
+      kimHoangElement.appendChild(star);
+    }
 
     fetch('https://script.google.com/macros/s/AKfycbz7lGg7DEm6-H7MzV4enR0DIbOrmXmFNmT-HlUXsf349221-zHorwxFmN7PjylVSXgNXg/exec')
       .then(response => response.json())
