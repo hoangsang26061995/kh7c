@@ -32,25 +32,19 @@
       font-weight: bold;
       text-shadow: 1px 1px 2px black;
       border-radius: 10px;
-      user-select: none;
       margin: 5px auto;
       max-width: fit-content;
       padding: 8px 20px;
     }
 
-    .highlight-header.dntn {
-      font-size: 1.25rem;
-    }
-
-    .highlight-header.kimhoang {
-      font-size: 2.5rem;
-    }
+    .highlight-header.dntn { font-size: 1.25rem; }
+    .highlight-header.kimhoang { font-size: 2.5rem; }
 
     .sub-header {
       font-weight: bold;
       font-size: 1.2rem;
       color: darkblue;
-      margin: 0 0 10px 0;
+      margin-bottom: 10px;
     }
 
     .price-table {
@@ -60,7 +54,6 @@
       border: 2px solid red;
       border-radius: 15px;
       padding: 10px;
-      user-select: none;
       background-color: transparent;
     }
 
@@ -78,29 +71,22 @@
       font-weight: bold;
       text-align: center;
       padding: 10px 5px;
-      user-select: text;
       display: flex;
       justify-content: center;
       align-items: center;
     }
 
-    .price-table .gold-type {
+    .gold-type {
       background-color: red;
       color: yellow;
-      font-weight: bold;
       border-radius: 10px;
-      display: inline-block;
       padding: 5px 10px;
       font-size: 1.5rem;
     }
 
-    .price-table .price-cell {
+    .price-cell {
       font-size: 4rem;
       color: blue;
-      margin: 0 10px;
-    }
-
-    .price-table .price-cell.buy, .price-table .price-cell.sold {
       border-bottom: 2px solid blue;
     }
 
@@ -108,7 +94,6 @@
       border-bottom: 1px solid red;
       padding-bottom: 5px;
     }
-
     .price-table > div:last-child {
       border-bottom: none;
     }
@@ -124,7 +109,22 @@
       <div class="header-cell">LOẠI VÀNG</div>
       <div class="header-cell">MUA VÀO</div>
       <div class="header-cell">BÁN RA</div>
-      <!-- Các dòng dữ liệu sẽ được thêm bằng JavaScript -->
+
+      <div class="cell"><span class="gold-type">9999/9949</span></div>
+      <div class="cell price-cell" id="buy1">--</div>
+      <div class="cell price-cell" id="sell1">--</div>
+
+      <div class="cell"><span class="gold-type">97/23K</span></div>
+      <div class="cell price-cell" id="buy2">--</div>
+      <div class="cell price-cell" id="sell2">--</div>
+
+      <div class="cell"><span class="gold-type">17K</span></div>
+      <div class="cell price-cell" id="buy3">--</div>
+      <div class="cell price-cell" id="sell3">--</div>
+
+      <div class="cell"><span class="gold-type">15K</span></div>
+      <div class="cell price-cell" id="buy4">--</div>
+      <div class="cell price-cell" id="sell4">--</div>
     </div>
   </div>
 
@@ -135,41 +135,23 @@
       document.getElementById('datetime').textContent = formatted;
     }
 
+    async function fetchGoldPrices() {
+      try {
+        const response = await fetch("https://script.google.com/macros/s/AKfycbz7lGg7DEm6-H7MzV4enR0DIbOrmXmFNmT-HlUXsf349221-zHorwxFmN7PjylVSXgNXg/exec");
+        const data = await response.json();
+        for (let i = 0; i < data.length; i++) {
+          document.getElementById(`buy${i+1}`).textContent = data[i][0];
+          document.getElementById(`sell${i+1}`).textContent = data[i][1];
+        }
+      } catch (error) {
+        console.error("Lỗi khi tải dữ liệu:", error);
+      }
+    }
+
     updateDateTime();
     setInterval(updateDateTime, 1000);
-
-    // Gọi API từ Google Sheets
-    fetch('https://script.google.com/macros/s/AKfycbz7lGg7DEm6-H7MzV4enR0DIbOrmXmFNmT-HlUXsf349221-zHorwxFmN7PjylVSXgNXg/exec')
-      .then(response => response.json())
-      .then(data => {
-        const priceTable = document.querySelector('.price-table');
-
-        // Xóa các dòng cũ (chừa lại 3 dòng đầu là tiêu đề)
-        while (priceTable.children.length > 3) {
-          priceTable.removeChild(priceTable.lastChild);
-        }
-
-        data.forEach(item => {
-          const loaiCell = document.createElement('div');
-          loaiCell.className = 'cell';
-          loaiCell.innerHTML = `<span class="gold-type">${item.loai}</span>`;
-
-          const muaCell = document.createElement('div');
-          muaCell.className = 'cell price-cell buy';
-          muaCell.textContent = item.mua;
-
-          const banCell = document.createElement('div');
-          banCell.className = 'cell price-cell sold';
-          banCell.textContent = item.ban;
-
-          priceTable.appendChild(loaiCell);
-          priceTable.appendChild(muaCell);
-          priceTable.appendChild(banCell);
-        });
-      })
-      .catch(error => {
-        console.error("Lỗi khi lấy dữ liệu từ Google Sheets:", error);
-      });
+    fetchGoldPrices();
+    setInterval(fetchGoldPrices, 60000); // cập nhật mỗi phút
   </script>
 </body>
 </html>
