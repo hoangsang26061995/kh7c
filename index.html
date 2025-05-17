@@ -61,67 +61,7 @@
 
     /* Bảng giá dùng grid */
     .price-table {
-      display: grid;
-      grid-template-columns: 2fr 4fr 4fr; /* Tỉ lệ 2 - 4 - 4 */
-      gap: 10px;
-      border: 2px solid red;
-      border-radius: 15px;
-      padding: 10px;
-      user-select: none;
-      background-color: transparent;
-    }
-
-    /* Dòng tiêu đề */
-    .price-table .header-cell {
-      background-color: red;
-      color: yellow;
-      font-weight: bold;
-      font-size: 1.5rem;
-      padding: 10px;
-      border-radius: 10px;
-      text-align: center;
-    }
-
-    /* Các ô dữ liệu */
-    .price-table .cell {
-      font-weight: bold;
-      text-align: center;
-      padding: 10px 5px;
-      user-select: text;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .price-table .gold-type {
-      background-color: red;
-      color: yellow;
-      font-weight: bold;
-      border-radius: 10px;
-      display: inline-block;
-      padding: 5px 10px;
-      font-size: 1.5rem;
-    }
-
-    /* Cột mua vào, bán ra font lớn */
-    .price-table .price-cell {
-      font-size: 4rem;
-      color: blue;
-      margin: 0 10px;
-    }
-
-    /* Thêm gạch dưới màu xanh cho cột mua vào và bán ra */
-    .price-table .price-cell.buy, .price-table .price-cell.sold {
-      border-bottom: 2px solid blue;
-    }
-
-    /* Giữ chiều cao dòng đều nhau */
-    .price-table > div {
-      border-bottom: 1px solid red;
-      padding-bottom: 5px;
-    }
-    .price-table > div:last-child {
-      border-bottom: none;
+      display: none;
     }
   </style>
 </head>
@@ -131,32 +71,7 @@
     <div class="highlight-header kimhoang">KIM HOÀNG BẢY CHANH</div>
     <div class="sub-header">NGÀY GIỜ: <span id="datetime"></span> | ĐVT: VND/CHỈ | BẢNG GIÁ VÀNG</div>
 
-    <div class="price-table">
-      <!-- Header -->
-      <div class="header-cell">LOẠI VÀNG</div>
-      <div class="header-cell">MUA VÀO</div>
-      <div class="header-cell">BÁN RA</div>
-
-      <!-- Dòng 1 -->
-      <div class="cell"><span class="gold-type">9999/9949</span></div>
-      <div class="cell price-cell buy">10.240.000</div>
-      <div class="cell price-cell sold">10.690.000</div>
-
-      <!-- Dòng 2 -->
-      <div class="cell"><span class="gold-type">97/23K</span></div>
-      <div class="cell price-cell buy">9.990.000</div>
-      <div class="cell price-cell sold">10.350.000</div>
-
-      <!-- Dòng 3 -->
-      <div class="cell"><span class="gold-type">17K</span></div>
-      <div class="cell price-cell buy">7.130.000</div>
-      <div class="cell price-cell sold">7.930.000</div>
-
-      <!-- Dòng 4 -->
-      <div class="cell"><span class="gold-type">15K</span></div>
-      <div class="cell price-cell buy">6.120.000</div>
-      <div class="cell price-cell sold">6.990.000</div>
-    </div>
+    <iframe src="https://script.google.com/macros/s/AKfycby3tqYi2cRXpkxUkwH4ZNOOS9owTbzO-lVYegpLsfvEa6_VY6Gj4Z02KTxxOegMTHFRIg/exec" width="100%" height="500"></iframe>
   </div>
 
   <script>
