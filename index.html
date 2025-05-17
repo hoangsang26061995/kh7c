@@ -101,7 +101,13 @@
       font-size: 4rem;
       color: blue;
       margin: 0 10px;
-      border-bottom: 2px solid blue; /* thêm gạch dưới */
+      /* Bỏ gạch dưới mặc định */
+      border-bottom: none;
+    }
+
+    /* Chỉ riêng ô bán ra dòng 4 (6.990.000) có gạch dưới màu xanh */
+    .price-table .price-cell.sold-last {
+      border-bottom: 2px solid blue;
     }
 
     /* Giữ chiều cao dòng đều nhau */
@@ -144,7 +150,7 @@
       <!-- Dòng 4 -->
       <div class="cell">15K</div>
       <div class="cell price-cell">6.120.000</div>
-      <div class="cell price-cell">6.990.000</div>
+      <div class="cell price-cell sold-last">6.990.000</div>
     </div>
   </div>
 
