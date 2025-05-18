@@ -20,20 +20,20 @@
       text-align: center;
     }
     .highlight-header {
-      background-color: #3498db;
-      color: #fff;
+      background-color: red;
+      color: yellow;
       font-weight: bold;
-      text-shadow: 1px 1px 2px #000;
+      text-shadow: 1px 1px 2px black;
       border-radius: 10px;
       margin: 10px auto;
       padding: 5px 10px;
       user-select: none;
       display: inline-block;
-      border: 2px solid #fff;
+      border: 2px solid yellow;
       transition: all 0.3s ease;
     }
     .highlight-header:hover {
-      background-color: #2980b9;
+      background-color: #ff3737;
       transform: scale(1.1);
     }
     .highlight-header.kimhoang {
@@ -44,7 +44,7 @@
     .sub-header {
       font-weight: bold;
       font-size: 1.2rem;
-      color: #2ecc71;
+      color: darkblue;
       text-align: center;
       margin-bottom: 10px;
       user-select: none;
@@ -53,21 +53,21 @@
       display: grid;
       grid-template-columns: 2fr 4fr 4fr;
       gap: 10px;
-      border: 2px solid #3498db;
+      border: 2px solid red;
       border-radius: 15px;
       padding: 10px;
       user-select: none;
       background-color: transparent;
     }
     .price-table .header-cell {
-      background-color: #3498db;
-      color: #fff;
+      background-color: red;
+      color: yellow;
       font-weight: bold;
       font-size: 1.5rem;
       padding: 10px;
       border-radius: 10px;
       text-align: center;
-      border: 2px solid #fff;
+      border: 2px solid yellow;
     }
     .price-table .cell {
       font-weight: bold;
@@ -83,20 +83,20 @@
       transform: scale(1.1);
     }
     .price-table .gold-type {
-      background-color: #3498db;
-      color: #fff;
+      background-color: red;
+      color: yellow;
       font-weight: bold;
       border-radius: 10px;
       padding: 5px 10px;
       font-size: 1.5rem;
-      border: 2px solid #fff;
+      border: 2px solid yellow;
     }
     .price-table .price-cell {
       font-size: 4rem;
-      color: #2ecc71;
+      color: blue;
       margin: 0 10px;
       text-decoration: underline;
-      text-decoration-color: #2ecc71;
+      text-decoration-color: blue;
       text-decoration-thickness: 2px;
     }
   </style>
@@ -125,14 +125,6 @@
 
     updateDateTime();
     setInterval(updateDateTime, 1000);
-
-    const observer = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
-        updateData();
-      }
-    }, { threshold: 1.0 });
-
-    observer.observe(document.querySelector('.price-table'));
 
     function updateData() {
       fetch('https://script.google.com/macros/s/AKfycbz7lGg7DEm6-H7MzV4enR0DIbOrmXmFNmT-HlUXsf349221-zHorwxFmN7PjylVSXgNXg/exec')
@@ -164,6 +156,9 @@
           console.error("Lỗi khi lấy dữ liệu từ Google Sheets:", error);
         });
     }
+
+    updateData();
+    setInterval(updateData, 1000);
   </script>
 </body>
 </html>
