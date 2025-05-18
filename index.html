@@ -104,20 +104,14 @@
       text-decoration-color: blue;
       text-decoration-thickness: 2px;
     }
-    .logo {
-      width: 100px;
-      height: 100px;
-      position: absolute;
-      top: 10px;
-      left: 10px;
-    }
   </style>
 </head>
 <body>
-  <img src="./images/kh7cxoaphong.png" alt="Logo" class="logo">
   <div class="container">
-    <div class="highlight-header dntn">DNTN</div>
-    <div class="highlight-header kimhoang">KIM HOÀNG BẢY CHANH</div>
+    <div style="display: flex; align-items: center; justify-content: center; position: relative;">
+      <img src="./images/kh7cxoaphong.png" alt="Logo" style="width: 100px; height: 100px; position: absolute; left: -120px;">
+      <div class="highlight-header kimhoang">KIM HOÀNG BẢY CHANH</div>
+    </div>
     <div class="sub-header">
       NGÀY GIỜ: <span id="datetime"></span> | ĐVT: VND/CHỈ | BẢNG GIÁ VÀNG
     </div>
