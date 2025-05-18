@@ -40,11 +40,22 @@
       font-size: 2.5rem;
       display: block;
       width: fit-content;
+      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #ff9900, 0 0 40px #ff9900;
+      color: #ff9900;
+      animation: glow 2s infinite;
+      border: none;
+      background-color: transparent;
     }
-    .highlight-header.dntn {
-      font-size: 2rem;
-      display: block;
-      width: fit-content;
+    @keyframes glow {
+      0% {
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #ff9900, 0 0 40px #ff9900;
+      }
+      50% {
+        text-shadow: 0 0 15px #fff, 0 0 30px #fff, 0 0 45px #ff9900, 0 0 60px #ff9900;
+      }
+      100% {
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #ff9900, 0 0 40px #ff9900;
+      }
     }
     .sub-header {
       font-weight: bold;
@@ -109,10 +120,7 @@
 <body>
   <div class="container">
     <div class="highlight-header dntn">DNTN</div>
-    <div style="display: flex; align-items: center; justify-content: center; position: relative;">
-      <img src="./images/kh7cxoaphong.png" alt="Logo" style="width: 100px; height: 100px; position: absolute; left: -120px; top: 0px;">
-      <div class="highlight-header kimhoang">KIM HOÀNG BẢY CHANH</div>
-    </div>
+    <div class="highlight-header kimhoang">KIM HOÀNG BẢY CHANH</div>
     <div class="sub-header">
       NGÀY GIỜ: <span id="datetime"></span> | ĐVT: VND/CHỈ | BẢNG GIÁ VÀNG
     </div>
@@ -122,7 +130,6 @@
       <div class="header-cell">MUA VÀO</div>
       <div class="header-cell">BÁN RA</div>
     </div>
-    <div id="error-message"></div>
   </div>
 
   <script>
@@ -160,16 +167,14 @@
             priceTable.appendChild(muaCell);
             priceTable.appendChild(banCell);
           });
-          document.getElementById('error-message').textContent = '';
         })
         .catch(error => {
           console.error("Lỗi khi lấy dữ liệu từ Google Sheets:", error);
-          document.getElementById('error-message').textContent = 'Lỗi khi lấy dữ liệu từ Google Sheets';
         });
     }
 
     updateData();
-    setInterval(updateData, 60000); // Update every minute
+    setInterval(updateData, 1000);
   </script>
 </body>
 </html>
