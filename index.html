@@ -28,17 +28,18 @@
       background-image: url('./images/kh7cxoaphong.png');
       background-size: cover;
       z-index: 1000;
-      animation: blink 2s infinite;
+      box-shadow: 0 0 10px 5px rgba(255, 255, 0, 0.7);
+      animation: shine 2s infinite;
     }
-    @keyframes blink {
+    @keyframes shine {
       0% {
-        opacity: 1;
+        box-shadow: 0 0 10px 5px rgba(255, 255, 0, 0.7);
       }
       50% {
-        opacity: 0.5;
+        box-shadow: 0 0 20px 10px rgba(255, 255, 0, 1);
       }
       100% {
-        opacity: 1;
+        box-shadow: 0 0 10px 5px rgba(255, 255, 0, 0.7);
       }
     }
     .highlight-header {
