@@ -1,49 +1,264 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bảng Giá Vàng</title>
-    <style>
-        .cloud {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #fff;
-            border-radius: 50%;
-            width: 100px;
-            height: 100px;
-            animation: cloud-move 10s infinite;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-        }
-
-        @keyframes cloud-move {
-            0% {
-                transform: translate(-50%, -50%);
-            }
-            50% {
-                transform: translate(-40%, -50%);
-            }
-            100% {
-                transform: translate(-50%, -50%);
-            }
-        }
-
-        .gia-vang {
-            position: relative;
-            width: 500px;
-            height: 300px;
-            background-color: #f0f0f0;
-            border: 1px solid #ddd;
-            padding: 20px;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bảng Giá Vàng - Kim Hoàng Bảy Chanh</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Open Sans', sans-serif;
+      background: url('./images/NEN.PNG') no-repeat center center fixed;
+      background-size: cover;
+      color: #000;
+    }
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 20px;
+      text-align: center;
+      position: relative;
+    }
+    .highlight-header {
+      background-color: red;
+      color: yellow;
+      font-weight: bold;
+      text-shadow: 1px 1px 2px black;
+      border-radius: 10px;
+      margin: 10px auto;
+      padding: 5px 10px;
+      user-select: none;
+      display: inline-block;
+      border: 2px solid yellow;
+      transition: all 0.3s ease;
+    }
+    .highlight-header:hover {
+      background-color: #ff3737;
+      transform: scale(1.1);
+    }
+    .highlight-header.kimhoang {
+      font-size: 2.5rem;
+      display: block;
+      width: fit-content;
+    }
+    .sub-header {
+      font-weight: bold;
+      font-size: 1.2rem;
+      color: darkblue;
+      text-align: center;
+      margin-bottom: 10px;
+      user-select: none;
+    }
+    .price-table {
+      display: grid;
+      grid-template-columns: 2fr 4fr 4fr;
+      gap: 10px;
+      border: 2px solid red;
+      border-radius: 15px;
+      padding: 10px;
+      user-select: none;
+      background-color: transparent;
+      position: relative;
+      z-index: 1;
+    }
+    .price-table .header-cell {
+      background-color: red;
+      color: yellow;
+      font-weight: bold;
+      font-size: 1.5rem;
+      padding: 10px;
+      border-radius: 10px;
+      text-align: center;
+      border: 2px solid yellow;
+    }
+    .price-table .cell {
+      font-weight: bold;
+      text-align: center;
+      padding: 10px 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+    .price-table .cell:hover {
+      background-color: #f1c40f;
+      transform: scale(1.1);
+    }
+    .price-table .gold-type {
+      background-color: red;
+      color: yellow;
+      font-weight: bold;
+      border-radius: 10px;
+      padding: 5px 10px;
+      font-size: 1.5rem;
+      border: 2px solid yellow;
+    }
+    .price-table .price-cell {
+      font-size: 4rem;
+      color: blue;
+      margin: 0 10px;
+      text-decoration: underline;
+      text-decoration-color: blue;
+      text-decoration-thickness: 2px;
+    }
+    .cloud {
+      position: absolute;
+      width: 100px;
+      height: 50px;
+      background-color: #fff;
+      border-radius: 50px;
+      opacity: 0.5;
+    }
+    .cloud-1 {
+      top: 10%;
+      left: 10%;
+      animation: cloud-move-1 10s infinite;
+    }
+    .cloud-2 {
+      top: 30%;
+      left: 40%;
+      animation: cloud-move-2 15s infinite;
+    }
+    .cloud-3 {
+      top: 50%;
+      left: 70%;
+      animation: cloud-move-3 20s infinite;
+    }
+    @keyframes cloud-move-1 {
+      0% {
+        transform: translateX(0);
+      }
+      50% {
+        transform: translateX(200px);
+      }
+      100% {
+        transform: translateX(0);
+      }
+    }
+    @keyframes cloud-move-2 {
+      0% {
+        transform: translateX(0) scale(1);
+      }
+      50% {
+        transform: translateX(300px) scale(1.2);
+      }
+      100% {
+        transform: translateX(0) scale(1);
+      }
+    }
+    @keyframes cloud-move-3 {
+      0% {
+        transform: translateX(0) rotate(0);
+      }
+      50% {
+        transform: translateX(400px) rotate(10deg);
+      }
+      100% {
+        transform: translateX(0) rotate(0);
+      }
+    }
+    .wind {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+    }
+    .wind .leaf {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: #fff;
+      border-radius: 50%;
+      opacity: 0.5;
+      animation: wind-move 5s infinite;
+    }
+    @keyframes wind-move {
+      0% {
+        transform: translateX(0) translateY(0);
+      }
+      50% {
+        transform: translateX(10px) translateY(5px);
+      }
+      100% {
+        transform: translateX(0) translateY(0);
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="gia-vang">
-        <div class="cloud"></div>
-        <!-- Thêm nội dung bảng giá vàng ở đây -->
+  <div class="container">
+    <div class="highlight-header dntn">DNTN</div>
+    <div class="highlight-header kimhoang">KIM HOÀNG BẢY CHANH</div>
+    <div class="sub-header">
+      NGÀY GIỜ: <span id="datetime"></span> | ĐVT: VND/CHỈ | BẢNG GIÁ VÀNG
     </div>
+
+    <div class="price-table">
+      <div class="header-cell">LOẠI VÀNG</div>
+      <div class="header-cell">MUA VÀO</div>
+      <div class="header-cell">BÁN RA</div>
+    </div>
+    <div class="cloud cloud-1"></div>
+    <div class="cloud cloud-2"></div>
+    <div class="cloud cloud-3"></div>
+    <div class="wind"></div>
+  </div>
+
+  <script>
+    function updateDateTime() {
+      const now = new Date();
+      const formatted = now.toLocaleString('vi-VN');
+      document.getElementById('datetime').textContent = formatted;
+    }
+
+    updateDateTime();
+    setInterval(updateDateTime, 1000);
+
+    function updateData() {
+      fetch('https://script.google.com/macros/s/AKfycbz7lGg7DEm6-H7MzV4enR0DIbOrmXmFNmT-HlUXsf349221-zHorwxFmN7PjylVSXgNXg/exec')
+        .then(response => response.json())
+        .then(data => {
+          const priceTable = document.querySelector('.price-table');
+          while (priceTable.children.length > 3) {
+            priceTable.removeChild(priceTable.lastChild);
+          }
+          data.forEach(item => {
+            const loaiCell = document.createElement('div');
+            loaiCell.className = 'cell';
+            loaiCell.innerHTML = `<span class="gold-type">${item.loai}</span>`;
+
+            const muaCell = document.createElement('div');
+            muaCell.className = 'cell price-cell buy';
+            muaCell.textContent = item.mua;
+
+            const banCell = document.createElement('div');
+            banCell.className = 'cell price-cell sold';
+            banCell.textContent = item.ban;
+
+            priceTable.appendChild(loaiCell);
+            priceTable.appendChild(muaCell);
+            priceTable.appendChild(banCell);
+          });
+        })
+        .catch(error => {
+          console.error("Lỗi khi lấy dữ liệu từ Google Sheets:", error);
+        });
+    }
+
+    updateData();
+    setInterval(updateData, 1000);
+
+    for (var i = 0; i < 50; i++) {
+      var leaf = document.createElement('div');
+      leaf.className = 'leaf';
+      leaf.style.top = Math.random() * 100 + '%';
+      leaf.style.left = Math.random() * 100 + '%';
+      leaf.style.animationDelay = Math.random() * 5 + 's';
+      document.querySelector('.wind').appendChild(leaf);
+    }
+  </script>
 </body>
 </html>
