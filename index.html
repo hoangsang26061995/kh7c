@@ -18,6 +18,7 @@
       margin: auto;
       padding: 0 20px;
       text-align: center;
+      position: relative;
     }
     .highlight-header {
       background-color: red;
@@ -58,6 +59,8 @@
       padding: 10px;
       user-select: none;
       background-color: transparent;
+      position: relative;
+      z-index: 1;
     }
     .price-table .header-cell {
       background-color: red;
@@ -99,6 +102,62 @@
       text-decoration-color: blue;
       text-decoration-thickness: 2px;
     }
+    .cloud {
+      position: absolute;
+      width: 100px;
+      height: 50px;
+      background-color: #fff;
+      border-radius: 50px;
+      opacity: 0.5;
+    }
+    .cloud-1 {
+      top: 10%;
+      left: 10%;
+      animation: cloud-move-1 10s infinite;
+    }
+    .cloud-2 {
+      top: 30%;
+      left: 40%;
+      animation: cloud-move-2 15s infinite;
+    }
+    .cloud-3 {
+      top: 50%;
+      left: 70%;
+      animation: cloud-move-3 20s infinite;
+    }
+    @keyframes cloud-move-1 {
+      0% {
+        transform: translateX(0);
+      }
+      50% {
+        transform: translateX(200px);
+      }
+      100% {
+        transform: translateX(0);
+      }
+    }
+    @keyframes cloud-move-2 {
+      0% {
+        transform: translateX(0) scale(1);
+      }
+      50% {
+        transform: translateX(300px) scale(1.2);
+      }
+      100% {
+        transform: translateX(0) scale(1);
+      }
+    }
+    @keyframes cloud-move-3 {
+      0% {
+        transform: translateX(0) rotate(0);
+      }
+      50% {
+        transform: translateX(400px) rotate(10deg);
+      }
+      100% {
+        transform: translateX(0) rotate(0);
+      }
+    }
   </style>
 </head>
 <body>
@@ -114,6 +173,9 @@
       <div class="header-cell">MUA VÀO</div>
       <div class="header-cell">BÁN RA</div>
     </div>
+    <div class="cloud cloud-1"></div>
+    <div class="cloud cloud-2"></div>
+    <div class="cloud cloud-3"></div>
   </div>
 
   <script>
