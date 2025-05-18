@@ -125,56 +125,63 @@
 </head>
 <body>
   <div class="logo"></div>
-  font-size: 100px;
-  height: 100px;
-  background-image: url('./images/kh7cxoaphong.png');
-  background-size: cover;
-  z-index: 1000;
-  animation: blink 2s infinite;
+  <div class="container">
+    <div class="highlight-header dntn">DNTN</div>
+    <div class="highlight-header kimhoang">KIM HOÀNG BẢY CHANH</div>
+    <div class="sub-header">
+      NGÀY GIỜ: <span id="datetime"></span> | ĐVT: VND/CHỈ | BẢNG GIÁ VÀNG
+    </div>
+
+    <div class="price-table">
+      <div class="header-cell">LOẠI VÀNG</div>
+      <div class="header-cell">MUA VÀO</div>
+      <div class="header-cell">BÁN RA</div>
+    </div>
+  </div>
+
+  <script>
+    function updateDateTime() {
+      const now = new Date();
+      const formatted = now.toLocaleString('vi-VN');
+      document.getElementById('datetime').textContent = formatted;
+    }
+
+    updateDateTime();
+    setInterval(updateDateTime, 1000);
+
+    function updateData() {
+      fetch('https://script.google.com/macros/s/AKfycbz7lGg7DEm6-H7MzV4enR0DIbOrmXmFNmT-HlUXsf349221-zHorwxFmN7PjylVSXgNXg/exec')
+        .then(response => response.json())
+        .then(data => {
+          const priceTable = document.querySelector('.price-table');
+          while (priceTable.children.length > 3) {
+            priceTable.removeChild(priceTable.lastChild);
+          }
+          data.forEach(item => {
+            const loaiCell = document.createElement('div');
+            loaiCell.className = 'cell';
+            loaiCell.innerHTML = `<span class="gold-type">${item.loai}</span>`;
+
+            const muaCell = document.createElement('div');
+            muaCell.className = 'cell price-cell buy';
+            muaCell.textContent = item.mua;
+
+            const banCell = document.createElement('div');
+            banCell.className = 'cell price-cell sold';
+            banCell.textContent = item.ban;
+
+            priceTable.appendChild(loaiCell);
+            priceTable.appendChild(muaCell);
+            priceTable.appendChild(banCell);
+          });
+        })
+        .catch(error => {
+          console.error("Lỗi khi lấy dữ liệu từ Google Sheets:", error);
+        });
+    }
+
+    updateData();
+    setInterval(updateData, 1000);
+  </script>
 </body>
 </html>
-
-<script>
-  function updateDateTime() {
-    const now = new Date();
-    const formatted = now.toLocaleString('vi-VN');
-    document.getElementById('datetime').textContent = formatted;
-  }
-
-  updateDateTime();
-  setInterval(updateDateTime, 1000);
-
-  function updateData() {
-    fetch('https://script.google.com/macros/s/AKfycbz7lGg7DEm6-H7MzV4enR0DIbOrmXmFNmT-HlUXsf349221-zHorwxFmN7PjylVSXgNXg/exec')
-      .then(response => response.json())
-      .then(data => {
-        const priceTable = document.querySelector('.price-table');
-        while (priceTable.children.length > 3) {
-          priceTable.removeChild(priceTable.lastChild);
-        }
-        data.forEach(item => {
-          const loaiCell = document.createElement('div');
-          loaiCell.className = 'cell';
-          loaiCell.innerHTML = `<span class="gold-type">${item.loai}</span>`;
-
-          const muaCell = document.createElement('div');
-          muaCell.className = 'cell price-cell buy';
-          muaCell.textContent = item.mua;
-
-          const banCell = document.createElement('div');
-          banCell.className = 'cell price-cell sold';
-          banCell.textContent = item.ban;
-
-          priceTable.appendChild(loaiCell);
-          priceTable.appendChild(muaCell);
-          priceTable.appendChild(banCell);
-        });
-      })
-      .catch(error => {
-        console.error("Lỗi khi lấy dữ liệu từ Google Sheets:", error);
-      });
-  }
-
-  updateData();
-  setInterval(updateData, 1000);
-</script>
