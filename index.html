@@ -41,6 +41,11 @@
       display: block;
       width: fit-content;
     }
+    .highlight-header.dntn {
+      font-size: 2rem;
+      display: block;
+      width: fit-content;
+    }
     .sub-header {
       font-weight: bold;
       font-size: 1.2rem;
@@ -99,10 +104,17 @@
       text-decoration-color: blue;
       text-decoration-thickness: 2px;
     }
+    .logo {
+      width: 100px;
+      height: 100px;
+      margin: 10px auto;
+      display: block;
+    }
   </style>
 </head>
 <body>
   <div class="container">
+    <img src="./images/kh7cxoaphong.png" alt="Logo" class="logo">
     <div class="highlight-header dntn">DNTN</div>
     <div class="highlight-header kimhoang">KIM HOÀNG BẢY CHANH</div>
     <div class="sub-header">
@@ -114,6 +126,7 @@
       <div class="header-cell">MUA VÀO</div>
       <div class="header-cell">BÁN RA</div>
     </div>
+    <div id="error-message"></div>
   </div>
 
   <script>
@@ -151,14 +164,16 @@
             priceTable.appendChild(muaCell);
             priceTable.appendChild(banCell);
           });
+          document.getElementById('error-message').textContent = '';
         })
         .catch(error => {
           console.error("Lỗi khi lấy dữ liệu từ Google Sheets:", error);
+          document.getElementById('error-message').textContent = 'Lỗi khi lấy dữ liệu từ Google Sheets';
         });
     }
 
     updateData();
-    setInterval(updateData, 1000);
+    setInterval(updateData, 60000); // Update every minute
   </script>
 </body>
 </html>
