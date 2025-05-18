@@ -186,6 +186,24 @@
         transform: translateX(0) translateY(0);
       }
     }
+    .songoku {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: songoku-fly 5s infinite;
+    }
+    @keyframes songoku-fly {
+      0% {
+        transform: translate(-50%, -50%) rotate(0);
+      }
+      50% {
+        transform: translate(-50%, -60%) rotate(10deg);
+      }
+      100% {
+        transform: translate(-50%, -50%) rotate(0);
+      }
+    }
   </style>
 </head>
 <body>
@@ -205,6 +223,9 @@
     <div class="cloud cloud-2"></div>
     <div class="cloud cloud-3"></div>
     <div class="wind"></div>
+    <div class="songoku">
+      <img src="songoku.png" alt="Songoku" style="width: 100px; height: 100px;">
+    </div>
   </div>
 
   <script>
